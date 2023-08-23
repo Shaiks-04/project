@@ -1,6 +1,8 @@
-const mongoose=require("mongoose")
+require('dotenv').config(); // Load environment variables from .env file
+const mongoose = require("mongoose");
+
+const url = process.env.MONGODB_URL; // Use environment variable for MongoDB URL
 mongoose.set("strictQuery",true)
-const url="mongodb+srv://shaikrahaman04:shaik123@cluster0.fqimvvo.mongodb.net/"
 const connection=async()=>{
     try{
        await mongoose.connect(url)
