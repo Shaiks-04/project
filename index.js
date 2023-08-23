@@ -2,9 +2,9 @@ const express = require("express");
 // const bcrypt=require("bcrypt");
 const cors=require("cors");
 // const UserRoutes=require('./Routes/UserRoutes')
-require('dotenv').config()
+
 const app = express();
-app.use(cors({origin:'*'}))
+app.use(cors())
 
 app.use(express.json())
 
@@ -12,7 +12,7 @@ app.use(express.json())
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
-const url = process.env.MONGODB_URL;
+const url = "mongodb+srv://shaikrahaman04:shaik123@cluster0.fqimvvo.mongodb.net/";
 const connection=require("./config/mongoose")
 //routes 
 const cartroute = require("./route/cartroute");
@@ -32,14 +32,11 @@ app.get("/", (req, res) => {
     res.send({ msg: "this is a testing phase" });
 });
 
-const port = process.env.PORT || 3001;
-
-app.listen(port, async () => {
+app.listen(3001, async () => {
     try {
         await connection(url);
-        console.log(`Server running on port ${port}`);
+        console.log("server running on port 3001");
     } catch (err) {
         console.log(err, "error occurred in running");
     }
 });
-
